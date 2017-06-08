@@ -131,3 +131,25 @@ pub unsafe fn syscall6(mut n: usize,
          : "volatile");
     a1
 }
+
+#[inline(always)]
+pub unsafe fn syscall7(mut n: usize,
+                       mut a1: usize,
+                       mut a2: usize,
+                       mut a3: usize,
+                       mut a4: usize,
+                       mut a5: usize,
+                       mut a6: usize,
+                       mut a7: usize)
+                       -> usize {
+    asm!("sc
+          bns+ 1f
+          neg $1, $1
+          1:"
+         : "+{r0}"(n) "+{r3}"(a1) "+{r4}"(a2) "+{r5}"(a3) "+{r6}"(a4)
+           "+{r7}"(a5) "+{r8}"(a6) "+{r9}"(a7)
+         :
+         : "cr0" "memory" "r9" "r10" "r11" "r12"
+         : "volatile");
+    a1
+}
