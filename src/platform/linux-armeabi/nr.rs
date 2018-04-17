@@ -2,6 +2,7 @@
 
 pub const ARM_BREAKPOINT: usize = 983041;
 pub const ARM_CACHEFLUSH: usize = 983042;
+pub const ARM_GET_TLS: usize = 983046;
 pub const ARM_SET_TLS: usize = 983045;
 pub const ARM_USR26: usize = 983043;
 pub const ARM_USR32: usize = 983044;
