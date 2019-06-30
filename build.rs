@@ -23,7 +23,12 @@ fn main() {
                 | ("x86_64", _, "macos", _) => "native/x86_64-abi.c",
                 ("x86", _, "linux", _) => "native/linux-x86.c",
                 ("arm", _, "linux", _) => "native/linux-armeabi.c",
-                _ => unimplemented!("Target {} is not supported on stable rust", std::env::var("TARGET").unwrap()),
+                ("powerpc", _, "linux", _)
+                | ("powerpc64", _, "linux", _) => "native/linux-powerpc.c",
+                _ => unimplemented!(
+                    "Target {} is not supported on stable rust",
+                    std::env::var("TARGET").unwrap()
+                ),
             };
 
             cc::Build::new().file(native_src).compile("platform");

@@ -19,6 +19,7 @@
 
 pub mod nr;
 
+#[cfg(asm)]
 #[inline(always)]
 pub unsafe fn syscall0(mut n: usize) -> usize {
     let ret: usize;
@@ -33,6 +34,7 @@ pub unsafe fn syscall0(mut n: usize) -> usize {
     ret
 }
 
+#[cfg(asm)]
 #[inline(always)]
 pub unsafe fn syscall1(mut n: usize, mut a1: usize) -> usize {
     asm!("sc
@@ -46,6 +48,7 @@ pub unsafe fn syscall1(mut n: usize, mut a1: usize) -> usize {
     a1
 }
 
+#[cfg(asm)]
 #[inline(always)]
 pub unsafe fn syscall2(mut n: usize, mut a1: usize, mut a2: usize) -> usize {
     asm!("sc
@@ -59,12 +62,9 @@ pub unsafe fn syscall2(mut n: usize, mut a1: usize, mut a2: usize) -> usize {
     a1
 }
 
+#[cfg(asm)]
 #[inline(always)]
-pub unsafe fn syscall3(mut n: usize,
-                       mut a1: usize,
-                       mut a2: usize,
-                       mut a3: usize)
-                       -> usize {
+pub unsafe fn syscall3(mut n: usize, mut a1: usize, mut a2: usize, mut a3: usize) -> usize {
     asm!("sc
           bns+ 1f
           neg $1, $1
@@ -76,13 +76,15 @@ pub unsafe fn syscall3(mut n: usize,
     a1
 }
 
+#[cfg(asm)]
 #[inline(always)]
-pub unsafe fn syscall4(mut n: usize,
-                       mut a1: usize,
-                       mut a2: usize,
-                       mut a3: usize,
-                       mut a4: usize)
-                       -> usize {
+pub unsafe fn syscall4(
+    mut n: usize,
+    mut a1: usize,
+    mut a2: usize,
+    mut a3: usize,
+    mut a4: usize,
+) -> usize {
     asm!("sc
           bns+ 1f
           neg $1, $1
@@ -94,14 +96,16 @@ pub unsafe fn syscall4(mut n: usize,
     a1
 }
 
+#[cfg(asm)]
 #[inline(always)]
-pub unsafe fn syscall5(mut n: usize,
-                       mut a1: usize,
-                       mut a2: usize,
-                       mut a3: usize,
-                       mut a4: usize,
-                       mut a5: usize)
-                       -> usize {
+pub unsafe fn syscall5(
+    mut n: usize,
+    mut a1: usize,
+    mut a2: usize,
+    mut a3: usize,
+    mut a4: usize,
+    mut a5: usize,
+) -> usize {
     asm!("sc
           bns+ 1f
           neg $1, $1
@@ -114,15 +118,17 @@ pub unsafe fn syscall5(mut n: usize,
     a1
 }
 
+#[cfg(asm)]
 #[inline(always)]
-pub unsafe fn syscall6(mut n: usize,
-                       mut a1: usize,
-                       mut a2: usize,
-                       mut a3: usize,
-                       mut a4: usize,
-                       mut a5: usize,
-                       mut a6: usize)
-                       -> usize {
+pub unsafe fn syscall6(
+    mut n: usize,
+    mut a1: usize,
+    mut a2: usize,
+    mut a3: usize,
+    mut a4: usize,
+    mut a5: usize,
+    mut a6: usize,
+) -> usize {
     asm!("sc
           bns+ 1f
           neg $1, $1
