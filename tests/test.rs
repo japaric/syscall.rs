@@ -16,8 +16,10 @@ fn ebadf() {
     static MESSAGE: &'static str = "Hello, world!";
 
     unsafe {
-        assert_eq!(syscall!(WRITE, 4, MESSAGE.as_ptr(), MESSAGE.len()) as isize,
-                   -9)
+        assert_eq!(
+            syscall!(WRITE, 4, MESSAGE.as_ptr(), MESSAGE.len()) as isize,
+            -9
+        )
     }
 }
 

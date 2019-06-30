@@ -11,6 +11,7 @@
 
 pub mod nr;
 
+#[cfg(asm)]
 #[inline(always)]
 pub unsafe fn syscall0(mut n: usize) -> usize {
     asm!("syscall"
@@ -21,6 +22,7 @@ pub unsafe fn syscall0(mut n: usize) -> usize {
     n
 }
 
+#[cfg(asm)]
 #[inline(always)]
 pub unsafe fn syscall1(mut n: usize, a1: usize) -> usize {
     asm!("syscall"
@@ -31,6 +33,7 @@ pub unsafe fn syscall1(mut n: usize, a1: usize) -> usize {
     n
 }
 
+#[cfg(asm)]
 #[inline(always)]
 pub unsafe fn syscall2(mut n: usize, a1: usize, a2: usize) -> usize {
     asm!("syscall"
@@ -41,6 +44,7 @@ pub unsafe fn syscall2(mut n: usize, a1: usize, a2: usize) -> usize {
     n
 }
 
+#[cfg(asm)]
 #[inline(always)]
 pub unsafe fn syscall3(mut n: usize, a1: usize, a2: usize, a3: usize) -> usize {
     asm!("syscall"
@@ -51,13 +55,9 @@ pub unsafe fn syscall3(mut n: usize, a1: usize, a2: usize, a3: usize) -> usize {
     n
 }
 
+#[cfg(asm)]
 #[inline(always)]
-pub unsafe fn syscall4(mut n: usize,
-                       a1: usize,
-                       a2: usize,
-                       a3: usize,
-                       a4: usize)
-                       -> usize {
+pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize) -> usize {
     asm!("syscall"
          : "+{rax}"(n)
          : "{rdi}"(a1) "{rsi}"(a2) "{rdx}"(a3) "{r10}"(a4)
@@ -66,14 +66,16 @@ pub unsafe fn syscall4(mut n: usize,
     n
 }
 
+#[cfg(asm)]
 #[inline(always)]
-pub unsafe fn syscall5(mut n: usize,
-                       a1: usize,
-                       a2: usize,
-                       a3: usize,
-                       a4: usize,
-                       a5: usize)
-                       -> usize {
+pub unsafe fn syscall5(
+    mut n: usize,
+    a1: usize,
+    a2: usize,
+    a3: usize,
+    a4: usize,
+    a5: usize,
+) -> usize {
     asm!("syscall"
          : "+{rax}"(n)
          : "{rdi}"(a1) "{rsi}"(a2) "{rdx}"(a3) "{r10}"(a4) "{r8}"(a5)
@@ -82,15 +84,17 @@ pub unsafe fn syscall5(mut n: usize,
     n
 }
 
+#[cfg(asm)]
 #[inline(always)]
-pub unsafe fn syscall6(mut n: usize,
-                       a1: usize,
-                       a2: usize,
-                       a3: usize,
-                       a4: usize,
-                       a5: usize,
-                       a6: usize)
-                       -> usize {
+pub unsafe fn syscall6(
+    mut n: usize,
+    a1: usize,
+    a2: usize,
+    a3: usize,
+    a4: usize,
+    a5: usize,
+    a6: usize,
+) -> usize {
     asm!("syscall"
          : "+{rax}"(n)
          : "{rdi}"(a1) "{rsi}"(a2) "{rdx}"(a3) "{r10}"(a4) "{r8}"(a5)"{r9}"(a6)

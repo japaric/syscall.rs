@@ -11,6 +11,7 @@
 
 pub mod nr;
 
+#[cfg(asm)]
 #[inline(always)]
 pub unsafe fn syscall0(mut n: usize) -> usize {
     asm!("int $$0x80"
@@ -21,6 +22,7 @@ pub unsafe fn syscall0(mut n: usize) -> usize {
     n
 }
 
+#[cfg(asm)]
 #[inline(always)]
 pub unsafe fn syscall1(mut n: usize, a1: usize) -> usize {
     asm!("int $$0x80"
@@ -31,6 +33,7 @@ pub unsafe fn syscall1(mut n: usize, a1: usize) -> usize {
     n
 }
 
+#[cfg(asm)]
 #[inline(always)]
 pub unsafe fn syscall2(mut n: usize, a1: usize, a2: usize) -> usize {
     asm!("int $$0x80"
@@ -41,6 +44,7 @@ pub unsafe fn syscall2(mut n: usize, a1: usize, a2: usize) -> usize {
     n
 }
 
+#[cfg(asm)]
 #[inline(always)]
 pub unsafe fn syscall3(mut n: usize, a1: usize, a2: usize, a3: usize) -> usize {
     asm!("int $$0x80"
@@ -51,13 +55,9 @@ pub unsafe fn syscall3(mut n: usize, a1: usize, a2: usize, a3: usize) -> usize {
     n
 }
 
+#[cfg(asm)]
 #[inline(always)]
-pub unsafe fn syscall4(mut n: usize,
-                       a1: usize,
-                       a2: usize,
-                       a3: usize,
-                       a4: usize)
-                       -> usize {
+pub unsafe fn syscall4(mut n: usize, a1: usize, a2: usize, a3: usize, a4: usize) -> usize {
     asm!("int $$0x80"
          : "+{eax}"(n)
          : "{ebx}"(a1) "{ecx}"(a2) "{edx}"(a3) "{esi}"(a4)
@@ -66,14 +66,16 @@ pub unsafe fn syscall4(mut n: usize,
     n
 }
 
+#[cfg(asm)]
 #[inline(always)]
-pub unsafe fn syscall5(mut n: usize,
-                       a1: usize,
-                       a2: usize,
-                       a3: usize,
-                       a4: usize,
-                       a5: usize)
-                       -> usize {
+pub unsafe fn syscall5(
+    mut n: usize,
+    a1: usize,
+    a2: usize,
+    a3: usize,
+    a4: usize,
+    a5: usize,
+) -> usize {
     asm!("int $$0x80"
          : "+{eax}"(n)
          : "{ebx}"(a1) "{ecx}"(a2) "{edx}"(a3) "{esi}"(a4) "{edi}"(a5)
@@ -82,15 +84,17 @@ pub unsafe fn syscall5(mut n: usize,
     n
 }
 
+#[cfg(asm)]
 #[inline(always)]
-pub unsafe fn syscall6(n: usize,
-                       a1: usize,
-                       a2: usize,
-                       a3: usize,
-                       a4: usize,
-                       a5: usize,
-                       a6: usize)
-                       -> usize {
+pub unsafe fn syscall6(
+    n: usize,
+    a1: usize,
+    a2: usize,
+    a3: usize,
+    a4: usize,
+    a5: usize,
+    a6: usize,
+) -> usize {
     let ret: usize;
 
     // XXX: this fails when building without optimizations:
