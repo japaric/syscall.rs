@@ -67,6 +67,11 @@ pub mod platform;
 #[path="platform/linux-x86_64/mod.rs"]
 pub mod platform;
 
+#[cfg(all(target_os = "linux",
+          target_arch = "riscv64"))]
+#[path="platform/linux-riscv/mod.rs"]
+pub mod platform;
+
 #[cfg(all(target_os = "freebsd",
           target_arch = "x86_64"))]
 #[path="platform/freebsd-x86_64/mod.rs"]
