@@ -39,6 +39,14 @@ def load_headers(names: Iterable[Tuple[str, str]], arch: str, extra: str = ''):
                 pass
             with open('{}/asm/unistd-common.h'.format(temp_include_dir), 'w'):
                 pass
+            with open('{}/asm/unistd_o32.h'.format(temp_include_dir), 'w'):
+                pass
+            with open('{}/asm/unistd_n64.h'.format(temp_include_dir), 'w'):
+                pass
+            with open('{}/asm/unistd_32.h'.format(temp_include_dir), 'w'):
+                pass
+            with open('{}/asm/unistd_64.h'.format(temp_include_dir), 'w'):
+                pass
 
             f.write(extra)
             f.write('\n')
@@ -50,7 +58,7 @@ def load_headers(names: Iterable[Tuple[str, str]], arch: str, extra: str = ''):
             f.flush()
             lines = subprocess.check_output(['gcc', '-nostdinc',
                 '-I', '{}/arch/{}/include/uapi'.format(linux_path, arch),
-                '-I', '{}/include'.format(linux_path),
+                '-I', '{}/include/uapi'.format(linux_path),
                 '-I', temp_include_dir,
                 '-P', # don't include line number markers, which make the output annoying to parse
                 '-E', # only preprocess, don't compile
