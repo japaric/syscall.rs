@@ -99,6 +99,7 @@ def main():
             'linux-sparc64': dict(load_headers(names, 'sparc')),
             'linux-x86': dict(load_table('arch/x86/entry/syscalls/syscall_32.tbl', {'i386'})),
             'linux-x86_64': dict(load_table('arch/x86/entry/syscalls/syscall_64.tbl', {'common', '64'})),
+            'linux-riscv': dict(load_headers(names, 'riscv')),
             }
 
     for arch, nums in numbers.items():
