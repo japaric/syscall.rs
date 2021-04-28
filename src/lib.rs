@@ -53,6 +53,11 @@ pub mod platform;
 pub mod platform;
 
 #[cfg(all(target_os = "linux",
+          target_arch = "riscv64"))]
+#[path="platform/linux-riscv64/mod.rs"]
+pub mod platform;
+
+#[cfg(all(target_os = "linux",
           target_arch = "sparc64"))]
 #[path="platform/linux-sparc64/mod.rs"]
 pub mod platform;
