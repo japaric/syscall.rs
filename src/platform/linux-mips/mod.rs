@@ -139,3 +139,55 @@ pub unsafe fn syscall6(mut nr: usize,
          : "volatile");
     if a4 == 0 { nr } else { -(nr as isize) as usize }
 }
+
+#[inline(always)]
+pub unsafe fn syscall7(mut nr: usize,
+                       a1: usize,
+                       a2: usize,
+                       a3: usize,
+                       mut a4: usize,
+                       a5: usize,
+                       a6: usize,
+                       a7: usize)
+                       -> usize {
+    asm!(".set noat
+          subu $$29,28
+          sw $5, 16($$29)
+          sw $6, 20($$29)
+          sw $7, 24($$29)
+          syscall
+          addiu $$29,28
+          .set at"
+         : "+{$2}"(nr) "+{$7}"(a4)
+         : "{$4}"(a1) "{$5}"(a2) "{$6}"(a3) "r"(a5) "r"(a6) "r"(a7)
+         : "$8" "$9" "$10" "$11" "$12" "$13" "$14" "$15" "$24" "$25" "memory"
+         : "volatile");
+    if a4 == 0 { nr } else { -(nr as isize) as usize }
+}
+
+#[inline(always)]
+pub unsafe fn syscall8(mut nr: usize,
+                       a1: usize,
+                       a2: usize,
+                       a3: usize,
+                       mut a4: usize,
+                       a5: usize,
+                       a6: usize,
+                       a7: usize,
+                       a8: usize)
+                       -> usize {
+    asm!(".set noat
+          subu $$29,32
+          sw $5, 16($$29)
+          sw $6, 20($$29)
+          sw $7, 24($$29)
+          sw $8, 28($$29)
+          syscall
+          addiu $$29,32
+          .set at"
+         : "+{$2}"(nr) "+{$7}"(a4)
+         : "{$4}"(a1) "{$5}"(a2) "{$6}"(a3) "r"(a5) "r"(a6) "r"(a7) "r"(a8)
+         : "$8" "$9" "$10" "$11" "$12" "$13" "$14" "$15" "$24" "$25" "memory"
+         : "volatile");
+    if a4 == 0 { nr } else { -(nr as isize) as usize }
+}
